@@ -1,32 +1,23 @@
----
+# permissions for end users to view markdownviews.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: manager-role
+  labels:
+    app.kubernetes.io/name: crd-markdown-view
+    app.kubernetes.io/managed-by: kustomize
+  name: markdownview-viewer-role
 rules:
 - apiGroups:
   - view.maeshinshin.github.io
   resources:
   - markdownviews
   verbs:
-  - create
-  - delete
   - get
   - list
-  - patch
-  - update
   - watch
-- apiGroups:
-  - view.maeshinshin.github.io
-  resources:
-  - markdownviews/finalizers
-  verbs:
-  - update
 - apiGroups:
   - view.maeshinshin.github.io
   resources:
   - markdownviews/status
   verbs:
   - get
-  - patch
-  - update
